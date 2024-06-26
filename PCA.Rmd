@@ -1,0 +1,107 @@
+---
+title: "PCA
+documentclass: ctexart
+output:
+  rticles::ctex:
+    fig_caption: yes
+    number_sections: yes
+    toc: no
+---
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(patchwork)
+```
+
+
+```{r}
+# read data
+data = read.csv("data_2020.csv", na.strings = NULL) %>%
+  select(-X)
+```
+
+
+```{r}
+# Construct PCA of economic variables based on sample correlation
+X = data[,c(1,4:12)]
+PCA = prcomp(~GDP+INF+UER+TR+RL+UP+CR+GE+PS, data = X, center = T, scale. = T,
+             retx = T)
+summary(PCA)
+```
+
+The loadings are given by
+
+```{r}
+PCA$rotation
+```
+
+
+The red line explain 80% of the variance. 
+
+
+```{r}
+# Bar plot of total variance explained by each variable
+create_scree_plot <- function(pca_result, title) {
+  explained_variance <- summary(pca_result)$importance["Cumulative Proportion",]*100
+  num_components <- length(explained_variance)
+  
+  scree_data <- data.frame(
+    Component = factor(1:num_components, levels = 1:num_components),
+    Variance = explained_variance
+  )
+  
+  scree_plot <- ggplot(scree_data,aes(x = Component, y = Variance)) +
+    geom_col(fill = "steelblue") +
+    geom_hline(yintercept = 80, linetype = "dashed", color = "red") +
+    theme_minimal() +
+    labs(title = title, x = NULL, y = "Cumulative Proportion") +
+    coord_cartesian(ylim = c(0, 100)) 
+    
+  
+  return(scree_plot)
+}
+p1 = create_scree_plot(PCA, "Cumulative proportion of variance ")
+```
+
+```{r}
+scree_plt = function(pca, title = "Scree plot"){
+  variance = summary(pca)$importance["Standard deviation",]^2
+  num_components <- length(variance)
+  df = data.frame(x = 1:num_components, y = variance)
+  p = ggplot(df, aes(x = x, y = y)) + geom_col(fill = "steelblue") + 
+    geom_line() + 
+    geom_point(col = "red", size = 2) + 
+    theme_minimal() +
+    labs(title = title, x = "Principal Component", y = "Component Variance") +
+    coord_cartesian(ylim = c(0, ceiling(max(variance)))) +
+    scale_x_continuous(breaks = 1:9)
+  return(p)
+}
+p2 = scree_plt(PCA)
+```
+
+
+
+It seems that numbers of PC to be chosen as 3 or 8 would be reasonable based on scree plot.
+
+
+下面的图片取消注释保存！
+
+```{r}
+p = p1 / p2
+p
+#ggsave("PCA.png", p)
+```
+
+取消注释保存图片
+
+```{r}
+#png("pca_biplot.png", width = 800, height = 800)
+biplot(PCA, xlabs = X$Country, cex = .9)
+```
+
+We decide to keep 4 PCs based on scree plot and cumulative proportion of variance explained.
+
+
+

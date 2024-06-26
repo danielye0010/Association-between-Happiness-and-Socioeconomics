@@ -1,0 +1,91 @@
+---
+title: "CCA"
+documentclass: ctexart
+output:
+  rticles::ctex:
+    fig_caption: yes
+    number_sections: yes
+    toc: no
+---
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(patchwork)
+```
+
+```{r}
+data = read.csv("data_2020.csv") %>%
+  select(-X)
+```
+
+
+
+用原数据集而不是降维数据集做CCA，因为要找的是经济因子的线性组合，而主成分之间是相互独立的
+
+```{r}
+# Construct CCA
+X = as.matrix(scale(data[,4:12]))
+Y = as.matrix(scale(data[,13:14]))
+CCA =  cancor(X, Y)
+w = CCA$xcoef
+d = CCA$ycoef
+V1 = Y %*% d[,1]
+V2 = Y %*% d[,2]
+U1 = X %*% w[,1]
+U2 = X %*% w[,2]
+rho = CCA$cor
+```
+
+
+First two CC components explain most correlations.
+
+```{r}
+# First two CC components correlations
+corr = data.frame(x = factor(1:2), y = rho)
+p1 = ggplot(corr, aes(x = x, y = y)) + geom_col(fill = "steelblue") + 
+  ggtitle("Barplot of correlations") +
+  xlab("CC component") + ylab("correlation")
+p1
+```
+
+
+```{r}
+# scatterplot of first two CC components
+df = data.frame(U = c(U1,U2), V = c(V1,V2),
+                group = as.factor(c(rep(1,nrow(data)),rep(2,nrow(data)))))
+p2 = ggplot(df, aes(x = U, y = V)) + geom_point() + facet_wrap(~group) +
+  ggtitle("Scatter plot of first and second two CC components")
+p2 
+```
+
+```{r}
+p = p1 / p2
+```
+
+
+取消注释保存!
+
+```{r}
+p
+#ggsave("CCA.png", p)
+```
+
+Here E means economics and H happiness
+
+取消注释保存图片！
+
+```{r, warning=FALSE}
+#png("cca_biplot.png", width = 800, height = 800)
+name = data %>% select(Country) %>%
+  mutate(x = paste(Country,"E", sep = "_"),
+         y = paste(Country, "H", sep = "_"))
+biplot(x = cbind(U1,U2), y = cbind(V2,V2),
+       xlabs = name$x, ylabs = name$y, cex = .9,
+       xlab = "U1", ylab = "U2")
+```
+
+
+PCA and CCA both seek for linear combinations of origina data. However, the goal of PCA is to explain as much variance as possible, while CCA tries to perserve the correlations between two data set using linear combinations. Noticing that here we only perform PCA on economic indicators instead of the whole numeric data. 
+
+

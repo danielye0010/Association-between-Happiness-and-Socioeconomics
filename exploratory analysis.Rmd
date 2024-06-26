@@ -1,0 +1,148 @@
+---
+title: "STAT 456 Group Project"
+author:
+  - Yaling Hong
+  - Zekun Wang
+  - Daniel Ye
+documentclass: ctexart
+output:
+  rticles::ctex:
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+---
+
+```{r, warning=F, message=F}
+# packages loading
+library(dplyr)
+library(ggplot2)
+library(vioplot)
+library(patchwork)
+library(corrplot)
+```
+
+```{r}
+# read data
+data = read.csv("data_2020.csv") %>%
+  select(-X)
+```
+
+
+# Exploratory Analysis
+
+```{r}
+# Data Description
+summary(data)
+```
+写报告时请结合上述描述性统计作简要说明，注意INF和PS中的最大值（显著的异常）！
+
+```{r}
+data[is.na(data$ContinentCode),]$ContinentCode = "NA"
+```
+
+
+```{r}
+# single factor visualization
+p1 = ggplot(data) + geom_violin(aes(x = ContinentCode, y = GDP,
+                                    fill = ContinentCode)) + 
+  geom_boxplot(aes(x = ContinentCode, y = GDP), width = 0.05) +
+  guides(fill = "none") + xlab(NULL)
+p2 = ggplot(data) + geom_violin(aes(x = ContinentCode, y = INF,
+                                    fill = ContinentCode)) + 
+  geom_boxplot(aes(x = ContinentCode, y = INF), width = 0.05) +
+  guides(fill = "none") + xlab(NULL)
+p3 = ggplot(data) + geom_violin(aes(x = ContinentCode, y = UER,
+                                    fill = ContinentCode)) + 
+  geom_boxplot(aes(x = ContinentCode, y = UER), width = 0.05) +
+  guides(fill = "none") + xlab(NULL)
+p4 = ggplot(data) + geom_violin(aes(x = ContinentCode, y = TR,
+                                    fill = ContinentCode)) + 
+  geom_boxplot(aes(x = ContinentCode, y = TR), width = 0.05) +
+  guides(fill = "none") + xlab(NULL)
+p5 = ggplot(data) + geom_violin(aes(x = ContinentCode, y = RL,
+                                    fill = ContinentCode)) + 
+  geom_boxplot(aes(x = ContinentCode, y = RL), width = 0.05) +
+  guides(fill = "none") + xlab(NULL)
+p6 = ggplot(data) + geom_violin(aes(x = ContinentCode, y = UP,
+                                    fill = ContinentCode)) + 
+  geom_boxplot(aes(x = ContinentCode, y = UP), width = 0.05) +
+  guides(fill = "none") + xlab(NULL)
+p7 = ggplot(data) + geom_violin(aes(x = ContinentCode, y = CR,
+                                    fill = ContinentCode)) + 
+  geom_boxplot(aes(x = ContinentCode, y = CR), width = 0.05) +
+  guides(fill = "none") + xlab(NULL)
+p8 = ggplot(data) + geom_violin(aes(x = ContinentCode, y = GE,
+                                    fill = ContinentCode)) + 
+  geom_boxplot(aes(x = ContinentCode, y = GE), width = 0.05) +
+  guides(fill = "none") + xlab(NULL)
+p9 = ggplot(data) + geom_violin(aes(x = ContinentCode, y = PS,
+                                    fill = ContinentCode)) + 
+  geom_boxplot(aes(x = ContinentCode, y = PS), width = 0.05) +
+  guides(fill = "none") + xlab(NULL)
+p10 = ggplot(data) + geom_violin(aes(x = ContinentCode, y = HI,
+                                    fill = ContinentCode)) + 
+  geom_boxplot(aes(x = ContinentCode, y = HI), width = 0.05) +
+  guides(fill = "none") 
+p11 = ggplot(data) + geom_violin(aes(x = ContinentCode, y = HDI,
+                                    fill = ContinentCode)) + 
+  geom_boxplot(aes(x = ContinentCode, y = HDI), width = 0.05) +
+  guides(fill = "none") + xlab(NULL)
+```
+
+```{r}
+# violin plots
+p_v = (p1 + p2 + p3 + p4) / (p5 + p6 + p7 + p8) / (p9 + p10 + p11)
+```
+
+取消注释保存下图，不要直接右键保存！
+
+```{r}
+p_v
+#ggsave("violin_plots.png", p_v)
+```
+
+Several conclusions can be drawn from the violin plot:
+
+1. There are outliers in almost every variable which might affect the distribution or our analysis result. However, they are reflections of the corresponding countries, which needs to be taken into consideration. We will leave this topic to later discussion.
+
+2. Density curves in UP and GE are almost a straight line, suggesting that the variances are very small.
+
+剩下的请结合上图对不同变量给出相应结论！
+
+```{r}
+rm(p1);rm(p2);rm(p3);rm(p4);rm(p5);rm(p6);rm(p7);rm(p8);rm(p9);rm(p10);rm(p11)
+```
+
+
+
+```{r}
+# Two variables, how's happiness index and human development index related
+p_c = ggplot(data, aes(x = HDI, y = HI)) + geom_point() + stat_density2d() 
+```
+
+取消注释保存下图，不要直接右键保存！
+
+```{r}
+p_c
+#ggsave("countour_plot.png", p_c)
+```
+
+HI and HDI are probably highly correlated.
+
+去掉注释保存图片！
+
+
+```{r}
+# Multiple variables
+# correlation matrix
+cormatrix=cor(data[,4:14])
+#png("correlation.png", width = 800, height = 800)
+corrplot(cormatrix, diag = F)
+```
+
+```{r}
+# scatter matrix
+#png("cor_matrix.png", width = 800, height = 800)
+pairs(data[,4:14], gap = 0)
+```
+

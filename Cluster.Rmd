@@ -1,0 +1,69 @@
+---
+title: "Cluster"
+documentclass: ctexart
+output:
+  rticles::ctex:
+    fig_caption: yes
+    number_sections: yes
+    toc: no 
+---
+
+```{r, warning=F}
+library(dplyr)
+library(ggplot2)
+library(patchwork)
+library(NbClust)
+```
+
+```{r}
+data = read.csv("data_2020.csv") %>%
+  select(-X)
+```
+
+Clustering using complete linkage.
+
+```{r}
+data_scaled = scale(data[,4:14])
+row.names(data_scaled) = tolower(data$Country)
+d = dist(data_scaled)
+fit = hclust(d, method = "complete")
+plot(fit, hang = -1, cex = .6, main = "Complete Linkage Clustering")
+```
+
+
+```{r}
+nc = NbClust(data_scaled, distance = "euclidean", min.nc = 2, max.nc = 10, 
+             method = "complete")
+t = table(nc$Best.n[1,])
+```
+
+Choose cluster numbers
+
+```{r}
+#png("Number_of_clusters.png")
+barplot(t, xlab = "Number of Clusters", ylab = "Number of Criteria",
+        main = "Number of clusters chosen by 26 criteria")
+```
+
+2, 3 and 8 are suggested.
+
+Take a look of 3 clusters
+
+```{r}
+clusters = cutree(fit, k = 3)
+table(clusters)
+```
+
+```{r}
+#png("dendrogram.png")
+plot(fit, hang = -1,  cex = .6, main = "Complete linkage clustering \n 3 clusters")
+rect.hclust(fit, k = 3)
+```
+
+```{r}
+# heatmap
+D = as.matrix(d)
+# png("heatmap.png", width = 800, height = 800)
+heatmap(D,main="Heatmap", Rowv = NA, Colv = NA, revC = T)
+```
+

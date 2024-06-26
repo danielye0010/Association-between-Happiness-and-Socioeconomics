@@ -1,0 +1,257 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{ctexart}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={CCA},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{CCA}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 4.2.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(patchwork)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'patchwork' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OtherTok{=} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"data\_2020.csv"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{X)}
+\end{Highlighting}
+\end{Shaded}
+
+用原数据集而不是降维数据集做CCA，因为要找的是经济因子的线性组合，而主成分之间是相互独立的
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Construct CCA}
+\NormalTok{X }\OtherTok{=} \FunctionTok{as.matrix}\NormalTok{(}\FunctionTok{scale}\NormalTok{(data[,}\DecValTok{4}\SpecialCharTok{:}\DecValTok{12}\NormalTok{]))}
+\NormalTok{Y }\OtherTok{=} \FunctionTok{as.matrix}\NormalTok{(}\FunctionTok{scale}\NormalTok{(data[,}\DecValTok{13}\SpecialCharTok{:}\DecValTok{14}\NormalTok{]))}
+\NormalTok{CCA }\OtherTok{=}  \FunctionTok{cancor}\NormalTok{(X, Y)}
+\NormalTok{w }\OtherTok{=}\NormalTok{ CCA}\SpecialCharTok{$}\NormalTok{xcoef}
+\NormalTok{d }\OtherTok{=}\NormalTok{ CCA}\SpecialCharTok{$}\NormalTok{ycoef}
+\NormalTok{V1 }\OtherTok{=}\NormalTok{ Y }\SpecialCharTok{\%*\%}\NormalTok{ d[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{V2 }\OtherTok{=}\NormalTok{ Y }\SpecialCharTok{\%*\%}\NormalTok{ d[,}\DecValTok{2}\NormalTok{]}
+\NormalTok{U1 }\OtherTok{=}\NormalTok{ X }\SpecialCharTok{\%*\%}\NormalTok{ w[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{U2 }\OtherTok{=}\NormalTok{ X }\SpecialCharTok{\%*\%}\NormalTok{ w[,}\DecValTok{2}\NormalTok{]}
+\NormalTok{rho }\OtherTok{=}\NormalTok{ CCA}\SpecialCharTok{$}\NormalTok{cor}
+\end{Highlighting}
+\end{Shaded}
+
+First two CC components explain most correlations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# First two CC components correlations}
+\NormalTok{corr }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =} \FunctionTok{factor}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{), }\AttributeTok{y =}\NormalTok{ rho)}
+\NormalTok{p1 }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{(corr, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y)) }\SpecialCharTok{+} \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{fill =} \StringTok{"steelblue"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Barplot of correlations"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{"CC component"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"correlation"}\NormalTok{)}
+\NormalTok{p1}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CCA_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# scatterplot of first two CC components}
+\NormalTok{df }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{U =} \FunctionTok{c}\NormalTok{(U1,U2), }\AttributeTok{V =} \FunctionTok{c}\NormalTok{(V1,V2),}
+                \AttributeTok{group =} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\FunctionTok{nrow}\NormalTok{(data)),}\FunctionTok{rep}\NormalTok{(}\DecValTok{2}\NormalTok{,}\FunctionTok{nrow}\NormalTok{(data)))))}
+\NormalTok{p2 }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ U, }\AttributeTok{y =}\NormalTok{ V)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{group) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Scatter plot of first and second two CC components"}\NormalTok{)}
+\NormalTok{p2 }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CCA_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{=}\NormalTok{ p1 }\SpecialCharTok{/}\NormalTok{ p2}
+\end{Highlighting}
+\end{Shaded}
+
+取消注释保存!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CCA_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#ggsave("CCA.png", p)}
+\end{Highlighting}
+\end{Shaded}
+
+Here E means economics and H happiness
+
+取消注释保存图片！
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#png("cca\_biplot.png", width = 800, height = 800)}
+\NormalTok{name }\OtherTok{=}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(Country) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{x =} \FunctionTok{paste}\NormalTok{(Country,}\StringTok{"E"}\NormalTok{, }\AttributeTok{sep =} \StringTok{"\_"}\NormalTok{),}
+         \AttributeTok{y =} \FunctionTok{paste}\NormalTok{(Country, }\StringTok{"H"}\NormalTok{, }\AttributeTok{sep =} \StringTok{"\_"}\NormalTok{))}
+\FunctionTok{biplot}\NormalTok{(}\AttributeTok{x =} \FunctionTok{cbind}\NormalTok{(U1,U2), }\AttributeTok{y =} \FunctionTok{cbind}\NormalTok{(V2,V2),}
+       \AttributeTok{xlabs =}\NormalTok{ name}\SpecialCharTok{$}\NormalTok{x, }\AttributeTok{ylabs =}\NormalTok{ name}\SpecialCharTok{$}\NormalTok{y, }\AttributeTok{cex =}\NormalTok{ .}\DecValTok{9}\NormalTok{,}
+       \AttributeTok{xlab =} \StringTok{"U1"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"U2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CCA_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+PCA and CCA both seek for linear combinations of origina data. However,
+the goal of PCA is to explain as much variance as possible, while CCA
+tries to perserve the correlations between two data set using linear
+combinations. Noticing that here we only perform PCA on economic
+indicators instead of the whole numeric data.
+
+\end{document}
