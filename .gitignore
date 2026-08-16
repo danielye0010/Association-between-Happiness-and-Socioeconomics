@@ -1,0 +1,14 @@
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+.DS_Store
+
+# RMarkdown / LaTeX generated files
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*_files/
+*_cache/
