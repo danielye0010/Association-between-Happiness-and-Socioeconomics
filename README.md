@@ -1,46 +1,78 @@
-# Happiness and Socioeconomics Analysis
+# Happiness and Socioeconomic Structure Across 93 Countries
 
-## Overview
-This study investigates the relationship between happiness and socioeconomic factors in 93 countries using exploratory data analysis, principal component analysis, canonical correlation analysis, and multivariate linear regression.
+A multivariate statistical analysis of the relationship between national happiness and socioeconomic conditions across **93 countries**, combining exploratory visualization, **PCA, canonical correlation analysis (CCA), clustering, and multivariate regression**.
 
-## Abstract
-We analyze how government effectiveness, rule of law, tax revenue, and urban population percentage positively correlate with happiness, while inflation, unemployment, GDP growth, and total population size negatively correlate. Data sources include the United Nations, World Bank, and World Happiness Report.
+The project integrates indicators from the United Nations, World Bank, and World Happiness Report to study how governance, labor-market conditions, macroeconomic variables, urbanization, and population structure move together with happiness and human-development outcomes.
 
-## Methodology
-### Data Collection
-- **Sources**: United Nations, World Bank, World Happiness Report
-- **Indicators**: GDP, Inflation, Unemployment, Tax Revenue, Rule of Law, Urban Population, Control of Corruption, Government Effectiveness, Total Population, Human Development Index (HDI), Happiness Index (HI)
+## Main findings
 
-### Modeling Methods
-- **Principal Component Analysis (PCA)**: Dimensional reduction to reveal relationships.
-- **Canonical Correlation Analysis (CCA)**: Quantifies correlation between happiness and socioeconomic indicators.
-- **Multivariate Linear Regression (MLR)**: Describes the linear relationship between happiness and socioeconomic factors.
+Across the exploratory, PCA, CCA, and regression analyses, the project identifies a consistent multivariate pattern:
 
-## Empirical Results
-### Exploratory Data Analysis
-- Visualized happiness and socioeconomic indicators across continents.
-- Identified correlations between happiness indices (HI and HDI) and socioeconomic factors.
+- **government effectiveness, rule of law, tax revenue, and urban population share** are associated with higher happiness/development outcomes;
+- **inflation, unemployment, GDP growth, and total population size** load in the opposite direction in the observed cross-country structure;
+- the first principal component captures a large share of the common socioeconomic variation, and four PCs are retained for the reduced representation;
+- CCA provides a second view of the joint relationship between the socioeconomic indicator block and the happiness/development block;
+- multivariate regression is used to assess which associations remain prominent after modeling the indicators jointly.
+
+## Variables
+
+The analysis includes:
+
+- GDP / GDP growth
+- inflation
+- unemployment
+- tax revenue
+- rule of law
+- urban population
+- control of corruption
+- government effectiveness
+- total population
+- Human Development Index (HDI)
+- Happiness Index (HI)
+
+## Methods
+
+### Exploratory data analysis
+
+Country- and continent-level visualizations are used to inspect distributions, outliers, and pairwise patterns before multivariate modeling.
 
 ### Principal Component Analysis
-- First principal component explains nearly half of the total variance.
-- Positive correlation: Government effectiveness, rule of law, tax revenue, urban population.
-- Negative correlation: GDP growth, inflation, unemployment, total population size.
+
+PCA compresses the correlated socioeconomic variables into a smaller set of orthogonal components and reveals the dominant directions of cross-country variation.
 
 ### Canonical Correlation Analysis
-- Confirms PCA results, with an exception for control of corruption, showing opposite association.
 
-### Multivariate Linear Regression
-- Validates PCA and CCA findings.
-- Significant positive correlation: Government effectiveness, urban population.
-- Significant negative correlation: GDP growth, inflation, unemployment, total population size.
+CCA studies the strongest linear relationships between two multivariate blocks: socioeconomic indicators and happiness/development outcomes.
 
-## Conclusions & Policy Recommendations
-- **Conclusions**: Government effectiveness, rule of law, tax revenue, urban population positively influence happiness. Inflation, unemployment, GDP growth, total population negatively impact happiness.
-- **Policy Recommendations**: Strengthen rule of law, manage population size, and stabilize financial markets.
+### Multivariate regression
 
-## Contributer
+Regression models quantify conditional associations between the outcome measures and socioeconomic predictors after accounting for the remaining variables in the model.
+
+### Clustering
+
+Country groupings are explored to identify socioeconomic profiles that emerge from the multivariate feature space.
+
+## Repository structure
+
+- `data.csv`, `data_2020.csv` — assembled country-level datasets
+- `exploratory analysis.Rmd` — exploratory visualization and descriptive analysis
+- `PCA.Rmd` — principal component analysis
+- `CCA.Rmd`, `cca.R`, `cca 456.R` — canonical correlation analysis
+- `Cluster.Rmd` — clustering analysis
+- additional R/RMarkdown files — regression and supporting analysis
+
+## Reproducibility
+
+The analysis is implemented in R/RMarkdown. Core packages used across the notebooks include `dplyr`, `ggplot2`, `patchwork`, and standard multivariate-statistics functions in R.
+
+The committed CSV files allow the main analyses to be reproduced without downloading external data first.
+
+## Statistical interpretation
+
+This is a cross-country observational study. The reported relationships are **multivariate associations**, not causal treatment effects. The value of the project is the consistency of the socioeconomic structure across several complementary statistical methods rather than a single isolated coefficient.
+
+## Contributors
+
 - Daniel Ye
 - Yaling Hong
 - Zekun Wang
-
-
